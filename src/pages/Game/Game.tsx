@@ -25,7 +25,7 @@ const Game = () => {
   const [redirect, setRedirect] = useState<boolean>(false);
 
   const ourGame = useSelector((state: RootState) => state.toolkit.arrOfItems).flat();
-  console.log(ourGame)
+  
   
 
   const countToWin = ourGame.filter(
