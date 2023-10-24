@@ -26,8 +26,6 @@ const Game = () => {
 
   const ourGame = useSelector((state: RootState) => state.toolkit.arrOfItems).flat();
   
-  
-
   const countToWin = ourGame.filter(
     (it: { type: number }) => it.type === 0
   ).length;
