@@ -4,15 +4,16 @@ import {
   makeMovePayload,
   MyState,
   ToOurArrProperty,
-} from "../../interface/interface";
-import { CREATE_GAME } from "./actions";
+} from "interface/interface";
+import { CREATE_GAME, MAKE_MOVE } from "./actions";
 // DefaultState
 const defaultState: MyState = {
   arrOfItems: [],
+  results: [],
 };
 // actions
 export const createNewGame = createAction<any>(CREATE_GAME);
-export const makeMove = createAction<any>("CREATE_N");
+export const makeMove = createAction<any>(MAKE_MOVE);
 
 //Reducer
 export const gameReducer = createReducer(defaultState, (builder) =>
@@ -30,7 +31,7 @@ export const gameReducer = createReducer(defaultState, (builder) =>
 
         const index: number = getIndex;
 
-        state.arrOfItems[index].value = true;
+        state.arrOfItems[0][index].value = true;
       }
     )
 );

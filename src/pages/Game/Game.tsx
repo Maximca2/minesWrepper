@@ -1,43 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Navigate } from "react-router";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 //images
-import bomber from "../../images/img-game/Bomb.svg.png";
-import smileNotRight from "../../images/img-game/smile-sad.png";
-import bomb from "../../images/img-game/Bomb.svg.png";
+import bomber from "images/img-game/13026.png";
+import smileNotRight from "images/img-game/smile-sad.png";
+import bomb from "images/img-game/bomb-in-game.png";
 //Components
-import Button from "../../Components/Button";
+import Button from "components/Button/Button";
 //redux state
-import { RootState } from "../../redux/store";
+import { RootState } from "redux/store";
 //reducer
-import { makeMove } from "../../redux/store/gameReducer";
-
+import { makeMove } from "redux/store/gameReducer";
+//helper
+import { mockedFunction } from "helpers/helper";
 //style
 import style from "./style.module.scss";
+
 const Game = () => {
-  
   const dispatch = useDispatch();
   const [isNotMines, setIsNotMines] = useState<boolean>(true);
   const [isMines, setIsisMines] = useState<boolean>(false);
+  const [isFail, setIsFail] = useState<boolean>(false);
   const [index, setIndex] = useState<number>(0);
   const [counter, setCounter] = useState<number>(0);
   const [redirect, setRedirect] = useState<boolean>(false);
 
-  const ourGame = useSelector((state: RootState) => state.toolkit.arrOfItems).flat();
-  
-  const countToWin = ourGame.filter(
+  const ourGame = useSelector(
+    (state: RootState) => state.toolkit.arrOfItems
+  ).flat();
+
+ 
+  const countToWin = useMemo(()=>ourGame.filter(
     (it: { type: number }) => it.type === 0
-  ).length;
+  ).length,[ourGame]) 
 
   function checkMines(type: number, index: number) {
+    
+    
     if (type === 1) {
       setIsNotMines(false);
       setIsisMines(true);
-
-      setTimeout(() => {
-        setRedirect(true);
-      }, 1000);
+      setIsFail(true);
+      setRedirect(true);
     }
     if (type === 0) {
       setIsNotMines(true);
@@ -47,10 +51,12 @@ const Game = () => {
     }
   }
   useEffect(() => {
+    
+    console.log(redirect)
     if (isMines && isNotMines) {
       dispatch(makeMove(index));
     }
-  }, [isMines, isNotMines, dispatch, index]);
+  }, [isMines, isNotMines, dispatch, index,redirect]);
 
   return (
     <div className={style.box}>
@@ -71,13 +77,13 @@ const Game = () => {
           </div>
         </div>
         <div className={style.weeperTable}>
-          {ourGame.length === 0 ? (
+          {!ourGame.length ? (
             <div>
               <Button
                 styles={style.toMainPageBtn}
                 value="Ви втратили свій прогрес ,перейдіть до головного меню"
                 to="*"
-                onClick={(any) => any}
+                onClick={mockedFunction}
               />
             </div>
           ) : (
@@ -86,7 +92,9 @@ const Game = () => {
                 <div
                   key={i}
                   className={it.value === true ? style.active : style.curIt}
-                  onClick={() => checkMines(it.type, i)}
+                  onClick={
+                    isFail ? mockedFunction : () => checkMines(it.type, i)
+                  }
                 >
                   <img
                     className={style.bomb}
@@ -98,6 +106,7 @@ const Game = () => {
             })
           )}
         </div>
+        {/* i don't find other methods */}
         {redirect ? <Navigate replace={true} to="/menu" /> : null}
       </div>
     </div>
