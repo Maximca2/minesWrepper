@@ -1,16 +1,12 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 //Components
 import Button from "components/Button/Button";
 //helper
-import { sendData } from "helpers/helper";
+import { mockedFunction } from "helpers";
 //style
 import style from "./style.module.scss";
 
 const MainPage = () => {
-
-  const dispatch = useDispatch();
-  
   return (
     <div>
       <div className={style.box}>
@@ -18,8 +14,8 @@ const MainPage = () => {
         <Button
           styles={style.btnStart}
           value="Розпочати гру"
-          to="/startGame"
-          onClick={() => sendData(dispatch)}
+          to="/createOwnLevel"
+          onClick={() => mockedFunction}
         />
       </div>
     </div>
