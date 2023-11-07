@@ -1,0 +1,1 @@
+export {sendData,checkValueFromInputs,mockedFunction} from './helper'
