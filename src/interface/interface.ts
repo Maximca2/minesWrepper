@@ -1,17 +1,16 @@
-//MyState
 export interface MyState {
-    results:ToOurArrProperty[]|any,
-    arrOfItems: ToOurArrProperty[]|any;
+  results: ToOurArrProperty[] | any;
+  arrOfItems: ToOurArrProperty[] | any;
 }
-//ToOurArrProperty
-export interface ToOurArrProperty{
-    
-    value:boolean,
-    type:number,
-    payload:any
+export interface ToOurArrProperty {
+  value: boolean;
+  type: number;
+  payload: any;
 }
-
-///makeMove
-export interface makeMovePayload{
-    index:number
+export interface MakeMovePayload {
+  index: number;
+}
+export interface CurGameData {
+  countOfEmptyLines: number|any;
+  countOfMines: string|any;
 }
