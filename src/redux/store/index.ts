@@ -10,6 +10,6 @@ export const store = configureStore({
     reducer:RootReducer,
     
 })
-
+export {createNewGame,makeMove} from './gameReducer'
 export type AppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof store.getState>
