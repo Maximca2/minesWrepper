@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Navigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 //images
 import bomber from "images/img-game/13026.png";
 import smileNotRight from "images/img-game/smile-sad.png";
@@ -17,6 +17,8 @@ import { mockedFunction } from "helpers";
 import style from "./style.module.scss";
 
 const Game = () => {
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isNotMines, setIsNotMines] = useState<boolean>(true);
   const [isMines, setIsisMines] = useState<boolean>(false);
@@ -57,7 +59,10 @@ const Game = () => {
     if (isMines && isNotMines) {
       dispatch(makeMove(index));
     }
-  }, [isMines, isNotMines, dispatch, index, redirect]);
+    if(redirect){
+      navigate('/menu')
+    }
+  }, [isMines, isNotMines, dispatch, index, redirect,navigate]);
 
   return (
     <div className={style.box}>
@@ -110,10 +115,6 @@ const Game = () => {
             })
           )}
         </div>
-        
-        {/* i don't find other methods  useNavigate*/}
-        
-        {redirect ? <Navigate replace={true} to="/menu" /> : null}
       </div>
     </div>
   );

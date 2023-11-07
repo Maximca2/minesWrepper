@@ -21,7 +21,6 @@ export const gameReducer = createReducer(defaultState, (builder) =>
     .addCase(
       createNewGame,
       (state: MyState, { payload }: PayloadAction<ToOurArrProperty>) => {
-        console.log(payload)
         state.arrOfItems = payload;
       }
     )
