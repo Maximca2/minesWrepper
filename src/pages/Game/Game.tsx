@@ -6,13 +6,13 @@ import bomber from "images/img-game/13026.png";
 import smileNotRight from "images/img-game/smile-sad.png";
 import bomb from "images/img-game/bomb-in-game.png";
 //Components
-import Button from "components/Button/Button";
+import Button from "components/Button";
 //redux state
 import { RootState } from "redux/store";
 //reducer
-import { makeMove } from "redux/store/gameReducer";
+import { makeMove } from "redux/store";
 //helper
-import { mockedFunction } from "helpers/helper";
+import { mockedFunction } from "helpers";
 //style
 import style from "./style.module.scss";
 
@@ -29,34 +29,35 @@ const Game = () => {
     (state: RootState) => state.toolkit.arrOfItems
   ).flat();
 
- 
-  const countToWin = useMemo(()=>ourGame.filter(
-    (it: { type: number }) => it.type === 0
-  ).length,[ourGame]) 
+  const countToWin = useMemo(
+    () => ourGame.filter((it: { type: number }) => !it.type ).length,
+    [ourGame]
+  );
+  const countOfMines = useMemo(
+    () => ourGame.filter((it: { type: number }) => it.type ).length,
+    [ourGame]
+  );
 
   function checkMines(type: number, index: number) {
-    
-    
-    if (type === 1) {
+    if (type) {
       setIsNotMines(false);
       setIsisMines(true);
       setIsFail(true);
       setRedirect(true);
+      return 
     }
-    if (type === 0) {
+    
       setIsNotMines(true);
       setIsisMines(true);
       setCounter((counter) => (counter += 1));
       setIndex(index);
-    }
+    
   }
   useEffect(() => {
-    
-    console.log(redirect)
     if (isMines && isNotMines) {
       dispatch(makeMove(index));
     }
-  }, [isMines, isNotMines, dispatch, index,redirect]);
+  }, [isMines, isNotMines, dispatch, index, redirect]);
 
   return (
     <div className={style.box}>
@@ -69,9 +70,12 @@ const Game = () => {
           <div className={style.weeperCount}>
             кількість кроків до перемоги {counter}/{countToWin}
           </div>
+          <div className={style.weeperCount}>
+            кількість мін /{countOfMines}
+          </div>
           <div className={style.smiles}>
             <img
-              src={!isNotMines ? (isMines ? smileNotRight : "") : ""}
+              src={isNotMines|| !isMines ?  ''  : smileNotRight}
               alt=""
             />
           </div>
@@ -91,14 +95,14 @@ const Game = () => {
               return (
                 <div
                   key={i}
-                  className={it.value === true ? style.active : style.curIt}
+                  className={it.value ? style.active : style.curIt}
                   onClick={
                     isFail ? mockedFunction : () => checkMines(it.type, i)
                   }
                 >
                   <img
                     className={style.bomb}
-                    src={!isNotMines ? (it.type === 1 ? bomb : "") : ""}
+                    src={!isNotMines && it.type ?  bomb  : ""}
                     alt=""
                   />
                 </div>
@@ -106,7 +110,9 @@ const Game = () => {
             })
           )}
         </div>
-        {/* i don't find other methods */}
+        
+        {/* i don't find other methods  useNavigate*/}
+        
         {redirect ? <Navigate replace={true} to="/menu" /> : null}
       </div>
     </div>

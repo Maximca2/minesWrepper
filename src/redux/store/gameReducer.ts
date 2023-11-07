@@ -1,7 +1,7 @@
 import { createAction, createReducer, PayloadAction } from "@reduxjs/toolkit";
 //interface
 import {
-  makeMovePayload,
+  MakeMovePayload,
   MyState,
   ToOurArrProperty,
 } from "interface/interface";
@@ -21,12 +21,13 @@ export const gameReducer = createReducer(defaultState, (builder) =>
     .addCase(
       createNewGame,
       (state: MyState, { payload }: PayloadAction<ToOurArrProperty>) => {
+        console.log(payload)
         state.arrOfItems = payload;
       }
     )
     .addCase(
       makeMove,
-      (state: MyState, { payload }: PayloadAction<makeMovePayload>) => {
+      (state: MyState, { payload }: PayloadAction<MakeMovePayload>) => {
         const getIndex: any = [payload];
 
         const index: number = getIndex;
