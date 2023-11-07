@@ -4,8 +4,8 @@ import clsx from "clsx";
 //interface
 import { CurGameData } from "interface";
 //components
-import Input from "components/Input";
-import Button from "components/Button";
+import Input from "сomponents/Input";
+import Button from "сomponents/Button";
 //helpers
 import { checkValueFromInputs, sendData } from "helpers";
 //style

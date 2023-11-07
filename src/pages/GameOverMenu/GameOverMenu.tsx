@@ -4,7 +4,7 @@ import { RootState } from "redux/store";
 //img
 import bomb from "images/img-game/bomb-in-game.png";
 //Components
-import Button from "components/Button";
+import Button from "сomponents/Button";
 //helper
 import { sendData } from "helpers";
 //style

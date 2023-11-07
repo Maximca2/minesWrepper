@@ -6,7 +6,7 @@ import bomber from "images/img-game/13026.png";
 import smileNotRight from "images/img-game/smile-sad.png";
 import bomb from "images/img-game/bomb-in-game.png";
 //Components
-import Button from "components/Button";
+import Button from "сomponents/Button";
 //redux state
 import { RootState } from "redux/store";
 //reducer
