@@ -12,11 +12,8 @@
   color: firebrick;
 }
 
-/* CSS */
-
-/* CSS */
 .toMenu {
-  background-color: #561665; /* Green */
+  background-color: #561665; 
   border: none;
   color: white;
   padding: 15px 32px;
@@ -28,7 +25,7 @@
 }
 
 .toRestart {
-  background-color: #3aee11; /* Green */
+  background-color: #3aee11; 
   border: none;
   color: white;
   padding: 15px 32px;
@@ -46,52 +43,36 @@
 }
 .boxForBtn {
   margin-top: 40px;
-}
-
-// .activeGameOverMenu {
-//   background-color: #561665; /* Green */
-//   border: none;
-//   color: white;
-//   padding: 75px 32px;
-//   text-align: center;
-//   text-decoration: none;
-//   display: inline-block;
-//   font-size: 16px;
-//   margin-bottom: 40px;
-// }
-
-.weeperResultTable {
-  padding: 10px 10px;
+  align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
-  background-color: darkslategray;
-  width: 800px;
-  height: 400px;
-  transform: translate(-145px,170px);
 }
+
 .active {
   cursor: pointer;
   width: 50px;
   height: 30px;
-
-  margin-right: 3px;
+  margin-right: 32px;
   margin-bottom: 3px;
+  gap: 20px;
   background-color: black;
 }
-.curIt{
+.curIt {
   cursor: pointer;
-    width: 50px;
-    height: 30px;
-    background-color: rgb(209, 201, 201);
-    margin-right: 3px;
-    margin-bottom: 3px;
+  width: 50px;
+  height: 30px;
+  background-color: rgb(209, 201, 201);
+  margin-right: 3px;
+  margin-bottom: 3px;
+  gap: 20px;
+  
 }
-.bomb{
+.bomb {
   max-width: 14px;
 }
-.yourResult{
+.yourResult {
   font-size: 40px;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   color: crimson;
 }
