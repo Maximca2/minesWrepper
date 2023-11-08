@@ -1,5 +1,5 @@
 .box {
-    text-align: center;
+  text-align: center;
   padding: 100px 50px;
   width: 100%;
   height: 1200px;
@@ -10,11 +10,13 @@
   &ForGame {
     padding: 240px 180px 280px;
     display: flex;
-    height: auto;
     justify-content: center;
+    align-items:center;
     flex-direction: column;
     background-color: rgba(127, 120, 172, 0.477);
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   }
   .tableScoreAndResult {
     padding: 140px 50px;
@@ -23,86 +25,70 @@
     display: flex;
     gap: 30px;
     align-items: center;
-    .weeperCount{
-
-        font-size: 33px;
-        color: rgb(83, 62, 35);
-        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    .weeperCount {
+      font-size: 33px;
+      color: rgb(83, 62, 35);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    .smiles img{
-        max-width: 130px;
-        max-height: 130px;
-        
+    .smiles img {
+      max-width: 130px;
+      max-height: 130px;
     }
   }
 
-  .weeperTable {
-    padding: 10px 10px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    background-color: darkslategray;
-    width: 800px;
-    height: 400px;
-    .bomb{
-        max-width: 14px;
-        
-    }
 
-
-  }
   .curIt {
     
-    cursor: pointer;
-    width: 50px;
-    height: 30px;
-    background-color: rgb(209, 201, 201);
-    margin-right: 3px;
-    margin-bottom: 3px;
-  }
-  .decor{
-    background-color: bisque;
-  }
-  
-  
-}
-
-.tittle{
-    width: 800px;
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
     display: flex;
     justify-content: center;
-    gap: 40px;
     align-items: center;
-    .bomb{
-        align-items: center;
-        max-width: 170px;
-    }
-    h1{
-        
-        font-size: 44px ;
-        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        color: rgb(238, 120, 61);
-    }
-    margin-bottom: 40px;
-
-}
-.active{
+    font-weight: bold;
     cursor: pointer;
-    width: 50px;
-    height: 30px;
-    
-    margin-right: 3px;
-    margin-bottom: 3px;
-    background-color: black;
+  }
+  .decor {
+    background-color: bisque;
+  }
 }
-.toMainPageBtn{
-  background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+
+.tittle {
+  width: 800px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;
+  .bomb {
+    align-items: center;
+    max-width: 170px;
+  }
+  h1 {
+    font-size: 44px;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    color: rgb(238, 120, 61);
+  }
+  margin-bottom: 40px;
+}
+.active {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: black;
+}
+.toMainPageBtn {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }

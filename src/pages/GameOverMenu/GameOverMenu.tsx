@@ -20,6 +20,15 @@ const GameOverMenu = () => {
     (state: RootState) => state.toolkit.arrOfItems
   ).flat();
 
+  const ourGameResultStyle = {
+    display: "grid",
+    gridColumnGap:14,
+    rowSpacing:13,
+    gridTemplateColumns: `repeat(${Math.sqrt(
+      ourGame ? ourGame.length : 4
+    )},40px)`,
+    marginTop:40
+  };
   return (
     <div className={style.box}>
       <div className={style.menuBox}>
@@ -41,7 +50,7 @@ const GameOverMenu = () => {
           }
 
           <div className={style.yourResult}>Your Result</div>
-          <div className={style.weeperResultTable}>
+          <div style={ourGameResultStyle} >
             {!ourGame.length
               ? null
               : ourGame.map(

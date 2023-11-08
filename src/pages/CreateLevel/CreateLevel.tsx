@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 //interface
 import { CurGameData } from "interface";
@@ -17,19 +18,31 @@ const CreateLevel = () => {
     countOfEmptyLines: "",
     countOfMines: "",
   });
-
+  const navigate = useNavigate();
   const [inputIsEmpty, setInputIsEmpty] = useState(false);
   const [dataIs, setDataIs] = useState<boolean>(false);
 
   function checkAllInput(inputData: CurGameData): void {
-    if (!checkValueFromInputs(inputData.countOfEmptyLines, inputData.countOfMines)) {
+    if (
+      !checkValueFromInputs(inputData.countOfEmptyLines, inputData.countOfMines)
+    ) {
       setDataIs(false);
       setInputIsEmpty(true);
-    } else {
-      setDataIs(true);
-      setInputIsEmpty(false);
+      return;
     }
+    setDataIs(true);
+    setInputIsEmpty(false);
+    sendData(dispatch, dataToCreateGame);
   }
+  useEffect(() => {
+    setTimeout(() => {
+      setInputIsEmpty(false);
+    }, 3000);
+
+    if (dataIs) {
+      navigate("/startGame");
+    }
+  }, [dataIs, inputIsEmpty, navigate]);
 
   return (
     <div className={style.box}>
@@ -63,13 +76,9 @@ const CreateLevel = () => {
       ></Input>
       <Button
         styles={style.createGame}
-        value={dataIs ? "Start game" : "Next"}
-        to={dataIs ? "/startGame" : "/createOwnLevel"}
-        onClick={
-          dataIs
-            ? () => sendData(dispatch, dataToCreateGame)
-            : () => checkAllInput(dataToCreateGame)
-        }
+        value={"Next"}
+        to=""
+        onClick={() => checkAllInput(dataToCreateGame)}
       />
     </div>
   );

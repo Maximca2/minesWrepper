@@ -16,8 +16,8 @@ import { mockedFunction } from "helpers";
 //style
 import style from "./style.module.scss";
 
-const Game = () => {
 
+const Game = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isNotMines, setIsNotMines] = useState<boolean>(true);
@@ -32,13 +32,19 @@ const Game = () => {
   ).flat();
 
   const countToWin = useMemo(
-    () => ourGame.filter((it: { type: number }) => !it.type ).length,
+    () => ourGame.filter((it: { type: number }) => !it.type).length,
     [ourGame]
   );
   const countOfMines = useMemo(
-    () => ourGame.filter((it: { type: number }) => it.type ).length,
+    () => ourGame.filter((it: { type: number }) => it.type).length,
     [ourGame]
   );
+  const styleNet = {
+    display:'grid', 
+    gridTemplateColumns: `repeat(${Math.sqrt(Number(countToWin+countOfMines))}, 40px)`,
+     gap:1,
+     
+  }
 
   function checkMines(type: number, index: number) {
     if (type) {
@@ -46,23 +52,22 @@ const Game = () => {
       setIsisMines(true);
       setIsFail(true);
       setRedirect(true);
-      return 
+      return;
     }
-    
-      setIsNotMines(true);
-      setIsisMines(true);
-      setCounter((counter) => (counter += 1));
-      setIndex(index);
-    
+
+    setIsNotMines(true);
+    setIsisMines(true);
+    setCounter((counter) => (counter += 1));
+    setIndex(index);
   }
   useEffect(() => {
     if (isMines && isNotMines) {
       dispatch(makeMove(index));
     }
-    if(redirect){
-      navigate('/menu')
+    if (redirect) {
+      navigate("/menu");
     }
-  }, [isMines, isNotMines, dispatch, index, redirect,navigate]);
+  }, [isMines, isNotMines, dispatch, index, redirect, navigate]);
 
   return (
     <div className={style.box}>
@@ -75,17 +80,12 @@ const Game = () => {
           <div className={style.weeperCount}>
             кількість кроків до перемоги {counter}/{countToWin}
           </div>
-          <div className={style.weeperCount}>
-            кількість мін /{countOfMines}
-          </div>
+          <div className={style.weeperCount}>кількість мін /{countOfMines}</div>
           <div className={style.smiles}>
-            <img
-              src={isNotMines|| !isMines ?  ''  : smileNotRight}
-              alt=""
-            />
+            <img src={isNotMines || !isMines ? "" : smileNotRight} alt="" />
           </div>
         </div>
-        <div className={style.weeperTable}>
+        <div style={styleNet}>
           {!ourGame.length ? (
             <div>
               <Button
@@ -107,7 +107,7 @@ const Game = () => {
                 >
                   <img
                     className={style.bomb}
-                    src={!isNotMines && it.type ?  bomb  : ""}
+                    src={!isNotMines && it.type ? bomb : ""}
                     alt=""
                   />
                 </div>
