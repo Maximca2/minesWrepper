@@ -1,4 +1,6 @@
+/* eslint-disable no-self-compare */
 import React, { useState, useEffect, useMemo } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 //images
@@ -15,7 +17,7 @@ import { makeMove } from "redux/store";
 import { mockedFunction } from "helpers";
 //style
 import style from "./style.module.scss";
-
+import "react-toastify/dist/ReactToastify.css";
 
 const Game = () => {
   const navigate = useNavigate();
@@ -26,7 +28,7 @@ const Game = () => {
   const [index, setIndex] = useState<number>(0);
   const [counter, setCounter] = useState<number>(0);
   const [redirect, setRedirect] = useState<boolean>(false);
-  const [uniqueIndexes ,setUniqueIndexes] = useState<any>([])
+  const [uniqueIndexes, setUniqueIndexes] = useState<any>([]);
 
   const ourGame = useSelector(
     (state: RootState) => state.toolkit.arrOfItems
@@ -41,14 +43,31 @@ const Game = () => {
     [ourGame]
   );
   const styleNet = {
-    display:'grid', 
-    gridTemplateColumns: `repeat(${Math.sqrt(Number(countToWin+countOfMines))}, 40px)`,
-     gap:1,
-     
+    display: "grid",
+    gridTemplateColumns: `repeat(${Math.sqrt(
+      Number(countToWin + countOfMines)
+    )}, 40px)`,
+    gap: 1,
+  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  function toastSuccess() {
+    if (countToWin === countToWin) {
+      toast.success("Ви виграли", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
   }
-
+  useEffect(()=>{
+    if(counter===countToWin){
+      toastSuccess()
+      setTimeout(()=>{
+        navigate('/main')
+      },1000)
+      
+    }
+  },[countToWin, counter, navigate, toastSuccess])
+  
   function checkMines(type: number, index: number) {
-    
     if (type) {
       setIsNotMines(false);
       setIsisMines(true);
@@ -57,19 +76,17 @@ const Game = () => {
       return;
     }
 
-    
     setIsNotMines(true);
     setIsisMines(true);
     setIndex(index);
-    const ourIndexes = [...uniqueIndexes,index]
-    setUniqueIndexes(ourIndexes)
-    
-    if(!uniqueIndexes.includes(index)){
+    const ourIndexes = [...uniqueIndexes, index];
+    setUniqueIndexes(ourIndexes);
+
+    if (!uniqueIndexes.includes(index)) {
       setCounter((counter) => (counter += 1));
-      return 
+
+      return;
     }
-    
-    
   }
   useEffect(() => {
     if (isMines && isNotMines) {
@@ -78,15 +95,15 @@ const Game = () => {
     if (redirect) {
       navigate("/menu");
     }
-    
-    if(!ourGame.length){
-      
-      navigate('/main')
+
+    if (!ourGame.length) {
+      navigate("/main");
     }
-  }, [isMines, isNotMines, dispatch, index, redirect, navigate,ourGame]);
+  }, [isMines, isNotMines, dispatch, index, redirect, navigate, ourGame]);
 
   return (
     <div className={style.box}>
+      <ToastContainer limit={1} />
       <div className={style.boxForGame}>
         <div className={style.tittle}>
           <img className={style.bomb} src={bomber} alt="mines" />
