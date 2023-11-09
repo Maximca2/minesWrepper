@@ -13,6 +13,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="*" element={<MainPage />} />
+        <Route path="/main" element={<MainPage />} />
         <Route path="/createOwnLevel" element={<CreateLevel />} />
         <Route path="/startGame" element={<Game />} />
         <Route path="/menu" element={<MainMenu />} />
