@@ -37,7 +37,7 @@ const GameOverMenu = () => {
           <Button
             styles={style.toMenu}
             value="Перейти до головного  меню"
-            to="*"
+            to="/main"
             onClick={() => removeCurrentLevel()}
           />
           {

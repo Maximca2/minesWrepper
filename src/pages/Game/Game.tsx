@@ -26,6 +26,7 @@ const Game = () => {
   const [index, setIndex] = useState<number>(0);
   const [counter, setCounter] = useState<number>(0);
   const [redirect, setRedirect] = useState<boolean>(false);
+  const [uniqueIndexes ,setUniqueIndexes] = useState<any>([])
 
   const ourGame = useSelector(
     (state: RootState) => state.toolkit.arrOfItems
@@ -47,6 +48,7 @@ const Game = () => {
   }
 
   function checkMines(type: number, index: number) {
+    
     if (type) {
       setIsNotMines(false);
       setIsisMines(true);
@@ -55,10 +57,19 @@ const Game = () => {
       return;
     }
 
+    
     setIsNotMines(true);
     setIsisMines(true);
-    setCounter((counter) => (counter += 1));
     setIndex(index);
+    const ourIndexes = [...uniqueIndexes,index]
+    setUniqueIndexes(ourIndexes)
+    
+    if(!uniqueIndexes.includes(index)){
+      setCounter((counter) => (counter += 1));
+      return 
+    }
+    
+    
   }
   useEffect(() => {
     if (isMines && isNotMines) {
@@ -67,7 +78,12 @@ const Game = () => {
     if (redirect) {
       navigate("/menu");
     }
-  }, [isMines, isNotMines, dispatch, index, redirect, navigate]);
+    
+    if(!ourGame.length){
+      
+      navigate('/main')
+    }
+  }, [isMines, isNotMines, dispatch, index, redirect, navigate,ourGame]);
 
   return (
     <div className={style.box}>
