@@ -62,7 +62,7 @@ const Game = () => {
       toastSuccess();
       setTimeout(() => {
         navigate("/main");
-      }, 1000);
+      }, 3000);
     }
   }, [countToWin, counter, navigate, toastSuccess]);
 
