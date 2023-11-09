@@ -57,16 +57,15 @@ const Game = () => {
       });
     }
   }
-  useEffect(()=>{
-    if(counter===countToWin){
-      toastSuccess()
-      setTimeout(()=>{
-        navigate('/main')
-      },1000)
-      
+  useEffect(() => {
+    if (counter === countToWin) {
+      toastSuccess();
+      setTimeout(() => {
+        navigate("/main");
+      }, 1000);
     }
-  },[countToWin, counter, navigate, toastSuccess])
-  
+  }, [countToWin, counter, navigate, toastSuccess]);
+
   function checkMines(type: number, index: number) {
     if (type) {
       setIsNotMines(false);
@@ -135,7 +134,9 @@ const Game = () => {
                   key={i}
                   className={it.value ? style.active : style.curIt}
                   onClick={
-                    isFail ? mockedFunction : () => checkMines(it.type, i)
+                    isFail || counter === countToWin
+                      ? mockedFunction
+                      : () => checkMines(it.type, i)
                   }
                 >
                   <img
