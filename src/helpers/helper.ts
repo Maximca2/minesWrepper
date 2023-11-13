@@ -43,7 +43,7 @@ export function sendData(dispatch: any, dataToGame: any) {
 }
 
 export function checkValueFromInputs(value1: number, value2: number) {
-  if (!Number(value1) && !Number(value2)) {
+  if (!Number(value1) || !Number(value2)) {
     return false;
   }
 
