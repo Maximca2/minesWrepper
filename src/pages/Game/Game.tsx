@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 //images
 import bomber from "images/img-game/13026.png";
 import smileNotRight from "images/img-game/smile-sad.png";
-import bomb from "images/img-game/bomb-in-game.png";
 //Components
 import Button from "сomponents/Button";
 //redux state
@@ -138,13 +137,7 @@ const Game = () => {
                       ? mockedFunction
                       : () => checkMines(it.type, i)
                   }
-                >
-                  <img
-                    className={style.bomb}
-                    src={!isNotMines && it.type ? bomb : ""}
-                    alt=""
-                  />
-                </div>
+                ></div>
               );
             })
           )}

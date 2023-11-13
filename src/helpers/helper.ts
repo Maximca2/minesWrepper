@@ -43,20 +43,17 @@ export function sendData(dispatch: any, dataToGame: any) {
 }
 
 export function checkValueFromInputs(value1: number, value2: number) {
-  if(!Number(value1)&&!Number(value2)){
-    return false
-  }
-  if(value2**2>=value1**2){
-    return false
-  }
-  if (!value1 || !value2) {
+  if (!Number(value1) && !Number(value2)) {
     return false;
   }
 
-  if (value2 > 24 || value1 > 13) {
-    return false;
+  if (value1 > 1) {
+    if (value2 ** 2 - 1 < value1 ** 2 && value2 < 24 && value1 < 18) {
+      return true;
+    }
   }
-  return true;
+
+  return false;
 }
 
 export function mockedFunction() {
