@@ -48,7 +48,7 @@ export function checkValueFromInputs(value1: number, value2: number) {
   }
 
   if (value1 > 1) {
-    if (value2 ** 2 - 1 < value1 ** 2 && value2 < 24 && value1 < 18) {
+    if (value2  < value1 ** 2 && value2 < 24 && value1 < 18) {
       return true;
     }
   }
