@@ -5,13 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 //images
 import bomber from "images/img-game/13026.png";
-import smileNotRight from "images/img-game/smile-sad.png";
 //Components
 import Button from "сomponents/Button";
-//redux state
-import { RootState } from "redux/store";
-//reducer
-import { makeMove } from "redux/store";
+//redux state(&reducer)
+import { RootState, makeMove } from "redux/store";
 //helper
 import { mockedFunction } from "helpers";
 //style
@@ -21,12 +18,10 @@ import "react-toastify/dist/ReactToastify.css";
 const Game = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isNotMines, setIsNotMines] = useState<boolean>(true);
-  const [isMines, setIsisMines] = useState<boolean>(false);
+  const [isNotMines, setIsNotMines] = useState<boolean>(false);
   const [isFail, setIsFail] = useState<boolean>(false);
   const [index, setIndex] = useState<number>(0);
   const [counter, setCounter] = useState<number>(0);
-  const [redirect, setRedirect] = useState<boolean>(false);
   const [uniqueIndexes, setUniqueIndexes] = useState<any>([]);
 
   const ourGame = useSelector(
@@ -67,15 +62,13 @@ const Game = () => {
 
   function checkMines(type: number, index: number) {
     if (type) {
-      setIsNotMines(false);
-      setIsisMines(true);
+      setIsNotMines(true);
       setIsFail(true);
-      setRedirect(true);
+      navigate("/menu");
       return;
     }
 
     setIsNotMines(true);
-    setIsisMines(true);
     setIndex(index);
     const ourIndexes = [...uniqueIndexes, index];
     setUniqueIndexes(ourIndexes);
@@ -87,17 +80,13 @@ const Game = () => {
     }
   }
   useEffect(() => {
-    if (isMines && isNotMines) {
+    if (isNotMines) {
       dispatch(makeMove(index));
     }
-    if (redirect) {
-      navigate("/menu");
-    }
-
     if (!ourGame.length) {
       navigate("/main");
     }
-  }, [isMines, isNotMines, dispatch, index, redirect, navigate, ourGame]);
+  }, [isNotMines, dispatch, index, navigate, ourGame]);
 
   return (
     <div className={style.box}>
@@ -112,9 +101,6 @@ const Game = () => {
             кількість кроків до перемоги {counter}/{countToWin}
           </div>
           <div className={style.weeperCount}>кількість мін /{countOfMines}</div>
-          <div className={style.smiles}>
-            <img src={isNotMines || !isMines ? "" : smileNotRight} alt="" />
-          </div>
         </div>
         <div style={styleNet}>
           {!ourGame.length ? (

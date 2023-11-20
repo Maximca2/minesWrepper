@@ -1,16 +1,19 @@
-export interface MyState {
-  results: ToOurArrProperty[] | any;
-  arrOfItems: ToOurArrProperty[] | any;
+export interface CurrentStateTypes {
+  results: ToReducerFullPropertyTypes[] ;
+  arrOfItems: ToReducerFullPropertyTypes[] ;
 }
-export interface ToOurArrProperty {
+
+export interface ToReducerFullPropertyTypes {
   value: boolean;
   type: number;
-  payload: any;
+  payload: number;
+  [index:number]:|{value: boolean}
+  
+  
 }
-export interface MakeMovePayload {
-  index: number;
-}
-export interface CurGameData {
-  countOfEmptyLines: number|any;
+export interface CurGameTypes {
+  countOfEmptyLines: string|any;
   countOfMines: string|any;
 }
+
+

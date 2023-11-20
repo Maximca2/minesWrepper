@@ -1,10 +1,11 @@
+
 import { createNewGame } from "redux/store";
 
 function createGame(lengthData: {
   countOfEmptyLines: number;
   countOfMines: number;
 }) {
-  const arrWithEmptyLines: any = Array(Number(lengthData.countOfEmptyLines))
+  const arrWithEmptyLines: {type:number,value:boolean}[] = Array(Number(lengthData.countOfEmptyLines))
     .fill(Array(Number(lengthData.countOfEmptyLines)).fill(0))
     .join("")
     .replaceAll(",", "")
@@ -21,7 +22,7 @@ function createGame(lengthData: {
   return ourDataFull.sort(() => 0.5 - Math.random());
 }
 
-export function sendData(dispatch: any, dataToGame: any) {
+export function CheckDataToGame(dispatch: any, dataToGame: any) {
   const data = [];
   const keyToLevel = "MY_LEVEL";
 

@@ -6,7 +6,7 @@ import bomb from "images/img-game/bomb-in-game.png";
 //Components
 import Button from "сomponents/Button";
 //helper
-import { sendData } from "helpers";
+import { CheckDataToGame } from "helpers";
 //style
 import style from "./style.module.scss";
 
@@ -45,7 +45,7 @@ const GameOverMenu = () => {
               styles={style.toRestart}
               value="Розпочати гру заново"
               to="/startGame"
-              onClick={() => sendData(dispatch, null)}
+              onClick={() => CheckDataToGame(dispatch, null)}
             />
           }
 

@@ -15,7 +15,7 @@ const MainPage = () => {
           styles={style.btnStart}
           value="Розпочати гру"
           to="/createOwnLevel"
-          onClick={() => mockedFunction}
+          onClick={mockedFunction}
         />
       </div>
     </div>

@@ -1,1 +1,1 @@
-export {sendData,checkValueFromInputs,mockedFunction} from './helper'
+export {CheckDataToGame,checkValueFromInputs,mockedFunction} from './helper'

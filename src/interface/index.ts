@@ -1,1 +1,1 @@
-export type {MyState,ToOurArrProperty,MakeMovePayload,CurGameData} from './interface'
+export type {CurrentStateTypes,ToReducerFullPropertyTypes,CurGameTypes} from './interface'
