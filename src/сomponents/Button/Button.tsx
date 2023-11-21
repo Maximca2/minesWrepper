@@ -1,12 +1,13 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
+import { mockedFunction } from 'helpers';
 import './style.scss'
 
 type ButtonProps = {
     styles: string,
     value: string,
     to:string,
-    onClick: (params: any) => any,
+    onClick: typeof mockedFunction 
   }
 
 const Button = ({ styles, value, to ,onClick}:ButtonProps) => {
