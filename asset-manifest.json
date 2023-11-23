@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/minesWrepper/static/css/main.2dac9f02.css",
+    "main.js": "/minesWrepper/static/js/main.97b98767.js",
+    "static/media/13026.png": "/minesWrepper/static/media/13026.0568bfdd8a292127cae7.png",
+    "index.html": "/minesWrepper/index.html",
+    "main.2dac9f02.css.map": "/minesWrepper/static/css/main.2dac9f02.css.map",
+    "main.97b98767.js.map": "/minesWrepper/static/js/main.97b98767.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2dac9f02.css",
+    "static/js/main.97b98767.js"
+  ]
+}
