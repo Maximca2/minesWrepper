@@ -1,0 +1,78 @@
+.box {
+  width: 100%;
+  height: 900px;
+  padding: 70px 50px;
+  display: flex;
+  justify-content: center;
+  background-color: coral;
+}
+.message {
+  font-size: 50px;
+  font-weight: bold;
+  color: firebrick;
+}
+
+.toMenu {
+  background-color: #561665; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+.toRestart {
+  background-color: #3aee11; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.menuBox {
+  padding: 40px;
+  width: 500px;
+  height: 300px;
+  background-color: blueviolet;
+  border-radius: 5px;
+}
+.boxForBtn {
+  margin-top: 40px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.active {
+  cursor: pointer;
+  width: 50px;
+  height: 30px;
+  margin-right: 32px;
+  margin-bottom: 3px;
+  gap: 20px;
+  background-color: black;
+}
+.curIt {
+  cursor: pointer;
+  width: 50px;
+  height: 30px;
+  background-color: rgb(209, 201, 201);
+  margin-right: 3px;
+  margin-bottom: 3px;
+  gap: 20px;
+  
+}
+.bomb {
+  max-width: 14px;
+}
+.yourResult {
+  font-size: 40px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: crimson;
+}

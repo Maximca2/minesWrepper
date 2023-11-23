@@ -1,0 +1,1 @@
+export type {CurrentStateTypes,ToReducerFullPropertyTypes,CurGameTypes} from './interface'
